@@ -22,16 +22,63 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    testOptions{
+        unitTests{
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
+    def arch_comp_version = "2.0.0-rc01"
+    def koin_version = "1.0.0-RC-1"
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:28.0.0-rc02'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 
-    // --- Tests
+    // Architecture components
+    implementation "androidx.lifecycle:lifecycle-extensions:$arch_comp_version"
+    kapt "androidx.lifecycle:lifecycle-compiler:$arch_comp_version"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams:$arch_comp_version"
+
+    // Spotify
+    implementation 'com.spotify.android:auth:1.1.0'
+
+    // Koin
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+
+    // RxJava
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.0'
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'
+
+    // Timber
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    // ---- Tests ----
+    // LiveData
+    testImplementation "android.arch.core:core-testing:$arch_comp_version"
+
+    // Roboelectric
+    testImplementation "org.robolectric:robolectric:3.8"
+
+    // Mockito
+    testImplementation 'org.mockito:mockito-core:2.20.0'
+
+    // Hamcrest
+    androidTestImplementation 'org.hamcrest:hamcrest-library:1.3'
+
+    // Espresso
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    // UI Automator
+    androidTestImplementation 'com.android.support.test.uiautomator:uiautomator-v18:2.1.3'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+    androidTestImplementation 'com.android.support:support-annotations:27.1.1'
 }
