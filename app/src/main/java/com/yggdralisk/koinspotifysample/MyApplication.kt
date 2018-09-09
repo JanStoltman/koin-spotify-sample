@@ -3,8 +3,8 @@ package com.yggdralisk.koinspotifysample
 import android.app.Application
 import android.content.Context
 import com.yggdralisk.koinspotifysample.injection.interactorModule
-import com.yggdralisk.koinspotifysample.injection.launcherModule
 import com.yggdralisk.koinspotifysample.injection.repositoryModule
+import com.yggdralisk.koinspotifysample.injection.viewModelModule
 import org.koin.android.ext.android.startKoin
 import timber.log.Timber
 
@@ -20,6 +20,6 @@ class MyApplication : Application() {
             Timber.plant(Timber.DebugTree())
         }
 
-        startKoin(this, listOf(launcherModule, interactorModule, repositoryModule))
+        startKoin(this, listOf(viewModelModule, interactorModule, repositoryModule))
     }
 }

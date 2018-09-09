@@ -1,5 +1,6 @@
 package com.yggdralisk.koinspotifysample.presentation.launcher
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -10,6 +11,13 @@ class LauncherActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.getLoginStatus()
+        fetchIntentAndStart()
+    }
+
+    private fun fetchIntentAndStart() {
+        viewModel.getActivityToStart().observe({ this.lifecycle }, {
+            startActivity(Intent(this, it))
+            this.finish()
+        })
     }
 }

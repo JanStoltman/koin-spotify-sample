@@ -1,7 +1,7 @@
 package com.yggdralisk.koinspotifysample.data.specific
 
 import androidx.annotation.VisibleForTesting
-import com.yggdralisk.koinspotifysample.data.base.SharedPreferencesRepository
+import com.yggdralisk.koinspotifysample.data.common.SharedPreferencesRepository
 import com.yggdralisk.koinspotifysample.data.model.LoginStatus
 import io.reactivex.Single
 

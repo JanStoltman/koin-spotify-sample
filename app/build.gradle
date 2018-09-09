@@ -22,9 +22,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    testOptions{
-        unitTests{
+    testOptions {
+        unitTests {
             includeAndroidResources = true
+        }
+    }
+    signingConfigs {
+        debug {
+            storeFile file('keystore/debug.keystore')
+            keyAlias 'androiddebugkey'
+            storePassword 'android'
+            keyPassword 'android'
         }
     }
 }
@@ -32,6 +40,7 @@ android {
 dependencies {
     def arch_comp_version = "2.0.0-rc01"
     def koin_version = "1.0.0-RC-1"
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:28.0.0-rc02'
@@ -59,14 +68,17 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
     // ---- Tests ----
+    // Koin
+    testImplementation "org.koin:koin-test:$koin_version"
+
     // LiveData
     testImplementation "android.arch.core:core-testing:$arch_comp_version"
 
     // Roboelectric
-    testImplementation "org.robolectric:robolectric:3.8"
+    testImplementation 'org.robolectric:robolectric:4.0-alpha-3'
 
     // Mockito
-    testImplementation 'org.mockito:mockito-core:2.20.0'
+    testImplementation 'org.mockito:mockito-core:2.21.0'
 
     // Hamcrest
     androidTestImplementation 'org.hamcrest:hamcrest-library:1.3'

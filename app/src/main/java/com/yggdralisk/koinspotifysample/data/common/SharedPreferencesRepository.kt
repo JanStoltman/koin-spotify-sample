@@ -1,4 +1,4 @@
-package com.yggdralisk.koinspotifysample.data.base
+package com.yggdralisk.koinspotifysample.data.common
 
 import android.content.SharedPreferences
 

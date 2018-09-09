@@ -1,6 +1,6 @@
 package com.yggdralisk.koinspotifysample.unit.repository
 
-import com.yggdralisk.koinspotifysample.data.base.SharedPreferencesRepository
+import com.yggdralisk.koinspotifysample.data.common.SharedPreferencesRepository
 import com.yggdralisk.koinspotifysample.data.model.LoginStatus
 import com.yggdralisk.koinspotifysample.data.specific.LoginStatusRepository
 import com.yggdralisk.koinspotifysample.data.specific.LoginStatusRepository.Companion.LOGIN_STATUS_PREF

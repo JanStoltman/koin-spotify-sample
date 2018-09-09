@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">KoinSpotifySample</string>
+    <string name="login">login</string>
 </resources>

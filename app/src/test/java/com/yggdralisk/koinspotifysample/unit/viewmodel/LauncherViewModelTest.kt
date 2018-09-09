@@ -4,6 +4,8 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.yggdralisk.koinspotifysample.data.model.LoginStatus
 import com.yggdralisk.koinspotifysample.domain.LoginStatusInteractor
 import com.yggdralisk.koinspotifysample.presentation.launcher.LauncherViewModel
+import com.yggdralisk.koinspotifysample.presentation.login.LoginActivity
+import com.yggdralisk.koinspotifysample.presentation.releases.ReleasesActivity
 import com.yggdralisk.koinspotifysample.unit.utils.RxImmediateSchedulerRule
 import io.reactivex.Single
 import junit.framework.TestCase.assertEquals
@@ -34,18 +36,18 @@ class LauncherViewModelTest {
     }
 
     @Test
-    fun getLoginStatus_shouldReturnNotLoggedIn() {
+    fun getActivityToStart_shouldReturnLoginActivity() {
         doReturn(Single.just(LoginStatus.LOGGED_OUT)).`when`(mockLoginStatusInteractor).getLoginStatus()
 
-        assertEquals(LoginStatus.LOGGED_OUT, launcherViewModel.getLoginStatus().value)
+        assertEquals(LoginActivity::class.java, launcherViewModel.getActivityToStart().value)
         verify(mockLoginStatusInteractor, times(1)).getLoginStatus()
     }
 
     @Test
-    fun getLoginStatus_shouldReturnLoggedIn() {
+    fun getActivityToStart_shouldReturnReleasesActivity() {
         doReturn(Single.just(LoginStatus.LOGGED_IN)).`when`(mockLoginStatusInteractor).getLoginStatus()
 
-        assertEquals(LoginStatus.LOGGED_IN, launcherViewModel.getLoginStatus().value)
+        assertEquals(ReleasesActivity::class.java, launcherViewModel.getActivityToStart().value)
         verify(mockLoginStatusInteractor, times(1)).getLoginStatus()
     }
 
