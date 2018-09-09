@@ -1,19 +1,14 @@
 package com.yggdralisk.koinspotifysample.data.specific
 
-import androidx.annotation.VisibleForTesting
-import com.yggdralisk.koinspotifysample.data.common.SharedPreferencesRepository
 import com.yggdralisk.koinspotifysample.data.model.LoginStatus
+import com.yggdralisk.koinspotifysample.util.extension.currentTimeSec
 import io.reactivex.Single
 
-open class LoginStatusRepository(private val sharedPreferencesRepository: SharedPreferencesRepository) {
-    companion object {
-        @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-        const val LOGIN_STATUS_PREF = "LOGIN_STATUS_PREF"
-    }
-
+open class LoginStatusRepository(private val preferencesRepository: LoginPreferencesRepository) {
     open fun getLoginStatus(): Single<LoginStatus> =
             Single.just(
-                    sharedPreferencesRepository.getBoolean(LOGIN_STATUS_PREF, false)
+                    preferencesRepository.getTokenExpirationTS() < currentTimeSec()
+                            && preferencesRepository.getAccessToken().isNotBlank()
             ).map {
                 LoginStatus.fromBoolean(it)
             }

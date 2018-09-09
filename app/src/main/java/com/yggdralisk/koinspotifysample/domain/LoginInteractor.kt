@@ -2,8 +2,11 @@ package com.yggdralisk.koinspotifysample.domain
 
 import android.app.Activity
 import com.yggdralisk.koinspotifysample.data.specific.LoginRepository
+import io.reactivex.Completable
+import io.reactivex.Scheduler
 
-class LoginInteractor(private val repository: LoginRepository) {
+class LoginInteractor(private val loginRepository: LoginRepository,
+                      private val subscribeOnScheduler: Scheduler, private val observeOnScheduler: Scheduler) {
     /**
      * Opens Spotify LoginActivity which performs authorization.
      * The result of the authorization flow will be received by the
@@ -14,7 +17,14 @@ class LoginInteractor(private val repository: LoginRepository) {
      * @param contextActivity A context activity for the LoginActivity.
      * @param requestCode     Request code for LoginActivity.
      */
-    fun openSpotifyLoginActivity(contextActivity: Activity, requestCode: Int) {
-        repository.loginUser(contextActivity, requestCode)
-    }
+    fun openSpotifyLoginActivity(contextActivity: Activity, requestCode: Int) =
+            loginRepository.loginUser(contextActivity, requestCode)
+
+
+    fun saveLoginData(accessToken: String, expiresIn: Int): Completable =
+            loginRepository
+                    .saveLoginData(accessToken, expiresIn.toLong())
+                    .subscribeOn(subscribeOnScheduler)
+                    .observeOn(observeOnScheduler)
+
 }

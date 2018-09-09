@@ -6,8 +6,10 @@ import com.spotify.sdk.android.authentication.AuthenticationClient
 import com.spotify.sdk.android.authentication.AuthenticationRequest
 import com.spotify.sdk.android.authentication.AuthenticationResponse.Type
 import com.yggdralisk.koinspotifysample.R
+import io.reactivex.Completable
+import timber.log.Timber
 
-open class LoginRepository(private val context: Context) {
+open class LoginRepository(private val context: Context, private val preferencesRepository: LoginPreferencesRepository) {
     companion object {
         const val READ_PRIVATE_SCOPE = "user-read-private"
         const val READ_BIRTH_DATE_SCOPE = "user-read-birthdate"
@@ -28,4 +30,16 @@ open class LoginRepository(private val context: Context) {
 
     private fun concatRedirectUri(): String =
             "${context.getString(R.string.com_spotify_sdk_redirect_scheme)}://${context.getString(R.string.com_spotify_sdk_redirect_host)}"
+
+
+    open fun saveLoginData(accessToken: String, expiresIn: Long): Completable =
+            Completable.create { e ->
+                try {
+                    preferencesRepository.saveLoginData(accessToken, expiresIn)
+                    e.onComplete()
+                } catch (t: Throwable) {
+                    Timber.e(t)
+                    e.onError(t)
+                }
+            }
 }

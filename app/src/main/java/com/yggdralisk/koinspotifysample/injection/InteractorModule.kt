@@ -8,5 +8,5 @@ import org.koin.dsl.module.module
 
 val interactorModule = module {
     factory { LoginStatusInteractor(get(), Schedulers.io(), AndroidSchedulers.mainThread()) }
-    factory { LoginInteractor(get()) }
+    factory { LoginInteractor(get(), Schedulers.io(), AndroidSchedulers.mainThread()) }
 }

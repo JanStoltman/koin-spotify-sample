@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">KoinSpotifySample</string>
     <string name="login">login</string>
+    <string name="login_def_error">Login error has occurred!</string>
 </resources>
