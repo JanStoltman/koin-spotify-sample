@@ -10,11 +10,11 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-private const val LOGGING_INTERCEPTOR: String = "LOGGING_INTERCEPTOR"
+private const val LOGGING_INTERCEPTOR = "LOGGING_INTERCEPTOR"
 
 val apiModule = module {
     single { Gson() }
-    single(name = LOGGING_INTERCEPTOR) {
+    single(LOGGING_INTERCEPTOR) {
         val logger = HttpLoggingInterceptor()
 
         logger.level = if (BuildConfig.DEBUG) {
@@ -27,7 +27,7 @@ val apiModule = module {
     }
     single {
         OkHttpClient.Builder()
-                .addInterceptor(get(name = LOGGING_INTERCEPTOR))
+                .addInterceptor(get(LOGGING_INTERCEPTOR))
                 .build()
     }
     single {

@@ -26,7 +26,7 @@ class LoginViewModel(private val loginInteractor: LoginInteractor) : ViewModel()
         loginInteractor.openSpotifyLoginActivity(contextActivity, LOGIN_REQUEST_CODE)
     }
 
-    fun getLoginError(): LiveData<Int?> {
+    fun getLoginErrorResId(): LiveData<Int?> {
         return loginErrorResId
     }
 
@@ -54,13 +54,18 @@ class LoginViewModel(private val loginInteractor: LoginInteractor) : ViewModel()
                 false
             }
 
-    fun handleResponse(response: AuthenticationResponse) {
+    private fun handleResponse(response: AuthenticationResponse) {
         loginInteractor.saveLoginData(response.accessToken, response.expiresIn)
-                .subscribe({ loginStatus.value = LoginStatus.LOGGED_IN }, { t -> handleError() })
+                .subscribe({ loginStatus.value = LoginStatus.LOGGED_IN }, { _ -> handleError() })
                 .addTo(subscriptions)
     }
 
-    fun handleError() {
+    private fun handleError() {
         loginErrorResId.value = R.string.login_def_error
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        subscriptions.clear()
     }
 }

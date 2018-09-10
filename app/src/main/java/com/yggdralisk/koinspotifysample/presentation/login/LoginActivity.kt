@@ -21,12 +21,18 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun observeViewModel() {
-        viewModel.getLoginError().observe({ this.lifecycle }, {
-            loginErrorView.text = if (it != null) getString(it) else ""
+        viewModel.getLoginErrorResId().observe({ this.lifecycle }, {
+            loginErrorView.text = if (it != null) {
+                getString(it)
+            } else {
+                ""
+            }
         })
 
         viewModel.getLoginStatus().observe({ this.lifecycle }, {
-            if (it == LoginStatus.LOGGED_IN) startReleasesActivity()
+            if (it == LoginStatus.LOGGED_IN) {
+                startReleasesActivity()
+            }
         })
     }
 

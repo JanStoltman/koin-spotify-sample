@@ -16,11 +16,6 @@ class LauncherViewModel(private val loginStatusInteractor: LoginStatusInteractor
     private val subscriptions = CompositeDisposable()
     private val activityToStart = MutableLiveData<Class<out Activity>>()
 
-    override fun onCleared() {
-        super.onCleared()
-        subscriptions.clear()
-    }
-
     fun getActivityToStart(): LiveData<Class<out Activity>> {
         loginStatusInteractor.getLoginStatus()
                 .subscribe({
@@ -34,5 +29,10 @@ class LauncherViewModel(private val loginStatusInteractor: LoginStatusInteractor
                 }).addTo(subscriptions)
 
         return activityToStart
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        subscriptions.clear()
     }
 }
