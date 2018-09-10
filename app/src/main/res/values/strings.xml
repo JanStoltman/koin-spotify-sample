@@ -2,4 +2,6 @@
     <string name="app_name">KoinSpotifySample</string>
     <string name="login">login</string>
     <string name="login_def_error">Login error has occurred!</string>
+    <string name="label_login">Login</string>
+    <string name="label_releases">Releases</string>
 </resources>

@@ -40,6 +40,7 @@ android {
 dependencies {
     def arch_comp_version = "2.0.0-rc01"
     def koin_version = "1.0.0-RC-1"
+    def retrofit_version = "2.4.0"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -66,6 +67,15 @@ dependencies {
 
     // Timber
     implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+
+    // Gson
+    implementation 'com.google.code.gson:gson:2.8.5'
 
     // ---- Tests ----
     // Koin

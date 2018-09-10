@@ -23,9 +23,11 @@
         </activity>
         <activity
             android:name=".presentation.login.LoginActivity"
+            android:label="@string/label_login"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".presentation.releases.ReleasesActivity"
+            android:label="@string/label_releases"
             android:theme="@style/AppTheme" />
         <activity
             android:name="com.spotify.sdk.android.authentication.LoginActivity"
