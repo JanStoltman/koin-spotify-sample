@@ -5,5 +5,5 @@ import com.yggdralisk.koinspotifysample.data.remote.ApiService
 import io.reactivex.Single
 
 class ReleasesRepository(private val apiService: ApiService) {
-    fun fetchReleases(accessToken: String): Single<NewReleasesResponse> = apiService.getNewReleases(accessToken)
+    fun fetchReleases(accessToken: String): Single<NewReleasesResponse> = apiService.getNewReleases("Bearer $accessToken")
 }

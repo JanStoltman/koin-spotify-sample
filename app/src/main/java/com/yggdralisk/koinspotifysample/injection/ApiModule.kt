@@ -3,6 +3,7 @@ package com.yggdralisk.koinspotifysample.injection
 import com.google.gson.Gson
 import com.yggdralisk.koinspotifysample.BuildConfig
 import com.yggdralisk.koinspotifysample.data.remote.ApiService
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module.module
@@ -23,7 +24,7 @@ val apiModule = module {
             HttpLoggingInterceptor.Level.NONE
         }
 
-        logger
+        logger as Interceptor
     }
     single {
         OkHttpClient.Builder()
@@ -40,4 +41,3 @@ val apiModule = module {
                 .create(ApiService::class.java)
     }
 }
-

@@ -16,6 +16,7 @@
     <TextView
         android:id="@+id/errorTextView"
         style="@style/ErrorTextView"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,7 +25,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/emptyTextView"
+        android:id="@+id/notFoundTextView"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/empty_releases_info"

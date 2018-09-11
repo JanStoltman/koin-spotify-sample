@@ -13,6 +13,6 @@ class ReleasesInteractor(private val releasesRepository: ReleasesRepository, pri
                     .subscribeOn(subscribeOnScheduler)
                     .observeOn(observeOnScheduler)
                     .map { response ->
-                        response.newReleases
+                        response.albums.newReleases
                     }
 }

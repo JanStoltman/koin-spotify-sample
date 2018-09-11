@@ -1,14 +1,8 @@
 package com.yggdralisk.koinspotifysample.data.model.response
 
 import com.google.gson.annotations.SerializedName
-import com.yggdralisk.koinspotifysample.data.model.ReleaseModel
+import com.yggdralisk.koinspotifysample.data.model.Albums
 
 data class NewReleasesResponse(
-        @SerializedName("albums") val newReleases: List<ReleaseModel>,
-        @SerializedName("href") val href: String,
-        @SerializedName("limit") val limitOfReleases: Int,
-        @SerializedName("next") val nextPage: String?,
-        @SerializedName("offset") val offsetOfReleases: Int,
-        @SerializedName("previous") val previousPage: String?,
-        @SerializedName("total") val totalReleases: Int
+        @SerializedName("albums") val albums: Albums
 )
