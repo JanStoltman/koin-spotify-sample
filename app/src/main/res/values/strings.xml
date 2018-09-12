@@ -10,4 +10,5 @@
     <string name="label_user_profile">User\'s profile</string>
     <string name="label_release">Release\'s details</string>
     <string name="descr_release_image">ReleaseImage</string>
+    <string name="descr_user_flag">userFlagImage</string>
 </resources>

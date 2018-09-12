@@ -3,6 +3,7 @@ package com.yggdralisk.koinspotifysample.injection
 import com.yggdralisk.koinspotifysample.domain.LoginInteractor
 import com.yggdralisk.koinspotifysample.domain.LoginStatusInteractor
 import com.yggdralisk.koinspotifysample.domain.ReleasesInteractor
+import com.yggdralisk.koinspotifysample.domain.UserProfileInteractor
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.koin.dsl.module.module
@@ -14,6 +15,8 @@ val interactorModule = module {
     factory { LoginStatusInteractor(get(), get(IO_SCHEDULER), get(MAIN_THREAD_SCHEDULER)) }
     factory { LoginInteractor(get(), get(IO_SCHEDULER), get(MAIN_THREAD_SCHEDULER)) }
     factory { ReleasesInteractor(get(), get(), get(IO_SCHEDULER), get(MAIN_THREAD_SCHEDULER)) }
+    factory { UserProfileInteractor(get(), get(), get(IO_SCHEDULER), get(MAIN_THREAD_SCHEDULER)) }
+
     single(IO_SCHEDULER) { Schedulers.io() }
     single(MAIN_THREAD_SCHEDULER) { AndroidSchedulers.mainThread() }
 }
