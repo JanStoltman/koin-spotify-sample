@@ -8,10 +8,18 @@
     android:layout_height="match_parent"
     tools:context=".presentation.releases.ReleasesActivity">
 
+    <Button
+        android:id="@+id/userProfileButton"
+        android:text="@string/your_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/releasesRecycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userProfileButton" />
 
     <TextView
         android:id="@+id/errorTextView"

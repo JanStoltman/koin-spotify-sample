@@ -3,21 +3,19 @@ package com.yggdralisk.koinspotifysample.presentation.login
 import android.content.Intent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.spotify.sdk.android.authentication.AuthenticationClient
 import com.spotify.sdk.android.authentication.AuthenticationResponse
 import com.yggdralisk.koinspotifysample.R
 import com.yggdralisk.koinspotifysample.data.model.LoginStatus
 import com.yggdralisk.koinspotifysample.domain.LoginInteractor
-import io.reactivex.disposables.CompositeDisposable
+import com.yggdralisk.koinspotifysample.presentation.base.BaseViewModel
 import io.reactivex.rxkotlin.addTo
 
-class LoginViewModel(private val loginInteractor: LoginInteractor) : ViewModel() {
+class LoginViewModel(private val loginInteractor: LoginInteractor) : BaseViewModel() {
     companion object {
         const val LOGIN_REQUEST_CODE = 1
     }
 
-    private val subscriptions = CompositeDisposable()
     private val loginErrorResId = MutableLiveData<Int?>()
     private val loginStatus = MutableLiveData<LoginStatus>()
 
@@ -62,10 +60,5 @@ class LoginViewModel(private val loginInteractor: LoginInteractor) : ViewModel()
 
     private fun handleError() {
         loginErrorResId.value = R.string.login_def_error
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        subscriptions.clear()
     }
 }

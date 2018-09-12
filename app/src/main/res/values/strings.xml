@@ -6,4 +6,8 @@
     <string name="label_releases">Releases</string>
     <string name="fetch_def_error">Fetch error has occurred!</string>
     <string name="empty_releases_info">No releases found :c</string>
+    <string name="your_profile">Your profile</string>
+    <string name="label_user_profile">User\'s profile</string>
+    <string name="label_release">Release\'s details</string>
+    <string name="descr_release_image">ReleaseImage</string>
 </resources>
